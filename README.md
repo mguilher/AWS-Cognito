@@ -3,57 +3,57 @@
 Muitas vezes você necessita publicar seus serviços/APIs na internet e para mitigar o uso indevido, é necessário usar um método de autenticação. Se você já faz uso da estrutura da nuvem da AWS, uma opção é fazer uso do Cognito é um serviço de identidade voltado a administração de Grupos de Usuário porem também pode ser utilizados facilmente entre APIs. Então vamos configurar e fazer um exemplo em .Net Core 3.1 C#.
 
 
-![IMG](images\0.jpg)
+![IMG](images/0.jpg)
 
 ## Configuração
 
 No Console da AWS procure pelo Cognito ao acessar escolha Gerenciar Grupos de Usuários conforme a imagem.
 
-![IMG1](images\1.png)
+![IMG1](images/1.png)
 
 Em seguida em Criar um Grupo de Usuários  
 
-![IMG2](images\2.png)
+![IMG2](images/2.png)
 
 Especifique um nome para o Grupo 
 
-![IMG3](images\3.png)
+![IMG3](images/3.png)
 
 E em seguida em Revisar Padrões e Adicionar cliente de aplicativo 
 
-![IMG4](images\4.png)
+![IMG4](images/4.png)
 
 E em Especifique um nome para o cliente de aplicativo 
 
-![IMG5](images\5.png)
+![IMG5](images/5.png)
 
 Utilize o botão Criar aplicativo de cliente em seguida salve o grupo
  
-![IMG6](images\6.png)
+![IMG6](images/6.png)
 
 Var em Servidores de recursos (barra lateral esquerda inferior) e Adicione um novo servidor 
 
-![IMG7](images\7.png)
+![IMG7](images/7.png)
 
 Preencha como na imagem lembrando que a combinação identificador/scopo sera utilizada na geração do token 
 
-![IMG8](images\8.png)
+![IMG8](images/8.png)
 
 Agora vá em Configuração do cliente do aplicativo e habilite o acesso por credenciais e o scopo configurado no servidor de recursos, conforme na imagem
 
-![IMG9](images\9.png)
+![IMG9](images/9.png)
 
 Então vá em Integração do aplicativo - Nome do domínio e configure um domínio para gerar uma url para obtenção do token  
 
-![IMG10](images\10.png)
+![IMG10](images/10.png)
 
 Agora é só resgatar as configurações, AppClientId e AppClientSecret ficam na tela de Ciente de aplicativo (acessível pela barra lateral esquerda)
 
-![IMG11](images\11.png)
+![IMG11](images/11.png)
 
 PoolId é o Id do grupo na tela Configurações gerais
 
-![IMG12](images\12.png)
+![IMG12](images/12.png)
 
 ## Criar o código de exemplo 
 
@@ -71,7 +71,7 @@ dotnet new webapi
 dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --version 3.1.3
 
 ```
-![IMG13](images\13.png)
+![IMG13](images/13.png)
 
 
 Abra o VisualStudio Code (ou Editor de sua  preferência )
@@ -79,7 +79,7 @@ Abra o VisualStudio Code (ou Editor de sua  preferência )
 ```cmd
 code ...
 ```
-![IMG14](images\14.png)
+![IMG14](images/14.png)
 
 No arquivo de configurações (appsettings.json) adicione as seguintes chaves para a configuração da validação de token JWT pelo Cognito, com os valores anteriormente recuperados na configuração no console AWS
 
@@ -91,7 +91,7 @@ No arquivo de configurações (appsettings.json) adicione as seguintes chaves p
   }
 ```
 
-![IMG15](images\15.png)
+![IMG15](images/15.png)
 
 Na sequencia altere o Startup para incluir o seguinte código de validação JWT e configuração de autorização 
 
@@ -157,11 +157,11 @@ No método Configure
 ```
 
 
-![IMG16](images\16.png)
+![IMG16](images/16.png)
 
-![IMG17](images\17.png)
+![IMG17](images/17.png)
 
-![IMG17](images\18.png)
+![IMG17](images/18.png)
 
 Depois altere o controller gerado pelo exemplo WeatherForecastController, incluindo o atributo de autorização na classe
 
@@ -171,7 +171,7 @@ using Microsoft.AspNetCore.Authorization;
 ```csharp
 [Authorize]
 ```
-![IMG19](images\19.png)
+![IMG19](images/19.png)
 
 ### Vamos criar o console de teste 
 
@@ -187,14 +187,14 @@ dotnet add package Microsoft.Extensions.Configuration.Json --version 3.1.3
 dotnet add package Microsoft.Extensions.Configuration.Binder --version 3.1.3
 dotnet add package Newtonsoft.Json --version 12.0.3
 ```
-![IMG20](images\20.png)
+![IMG20](images/20.png)
 
-![IMG21](images\21.png)
+![IMG21](images/21.png)
 
 
 Abra o VisualStudio Code
 
-![IMG22](images\22.png)
+![IMG22](images/22.png)
 
 Adicione um novo arquivo CognitoConfig.cs para a classe de configuração das informações do AWS Cognito
 
@@ -222,7 +222,7 @@ namespace Service2
 
 ```
 
-![IMG23](images\23.png)
+![IMG23](images/23.png)
 
 Adicione o novo arquivo de configurações (appsettings.json) conforme a estrutura da classe acima , com os valores anteriormente recuperados na configuração no console AWS
 
@@ -238,7 +238,7 @@ Adicione o novo arquivo de configurações (appsettings.json) conforme a estrut
     }
 }
 ```
-![IMG24](images\24.png)
+![IMG24](images/24.png)
 
 Na sequência vamos trazer a classe WeatherForecast para traduzir o resultado de consulta a API de exemplo 
 
@@ -262,7 +262,7 @@ Na sequência vamos trazer a classe WeatherForecast para traduzir o resultado d
         }
 ```
 
-![IMG25](images\25.png)
+![IMG25](images/25.png)
 
 Agora vamos alterar o Program.cs para incluir o código que lê as configurações gera um token JWT no serviço do AWS Cognito e faz um get de exemplo na nossa API de teste  usando o token para autenticar 
 
@@ -355,9 +355,9 @@ Método para gerar o token infonando "grant_type" como "client_credentials" o s
         return new Tuple<string, string>(data["token_type"].ToString(), data["access_token"].ToString());
     }
 ```
-![IMG26](images\26.png)
+![IMG26](images/26.png)
 
-![IMG27](images\27.png)
+![IMG27](images/27.png)
 
 Agora precisamos alterar o arquivo de projeto Service2.csproj, para incluir o arquivo de configuração na saída do build 
 
@@ -369,7 +369,7 @@ Agora precisamos alterar o arquivo de projeto Service2.csproj, para incluir o a
         </ItemGroup>
 ```
 
-![IMG28](images\28.png)
+![IMG28](images/28.png)
 
 ## Teste
 
@@ -378,7 +378,7 @@ Agora precisamos alterar o arquivo de projeto Service2.csproj, para incluir o a
 ```cmd
 dotnet run
 ```
-![IMG29](images\29.png)
+![IMG29](images/29.png)
 
 
 ### No segundo Pronpt de Comando execute o Console
@@ -386,7 +386,7 @@ dotnet run
 ```cmd
 dotnet run
 ```
-![IMG30](images\30.png)
+![IMG30](images/30.png)
 
 
 
