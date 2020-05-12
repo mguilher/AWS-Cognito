@@ -13,47 +13,47 @@ No Console da AWS procure pelo Cognito ao acessar escolha Gerenciar Grupos de Us
 
 Em seguida em Criar um Grupo de Usuários  
 
-![IMG2](images/2.png)
+![IMG2](images/2.PNG)
 
 Especifique um nome para o Grupo 
 
-![IMG3](images/3.png)
+![IMG3](images/3.PNG)
 
 E em seguida em Revisar Padrões e Adicionar cliente de aplicativo 
 
-![IMG4](images/4.png)
+![IMG4](images/4.PNG)
 
 E em Especifique um nome para o cliente de aplicativo 
 
-![IMG5](images/5.png)
+![IMG5](images/5.PNG)
 
 Utilize o botão Criar aplicativo de cliente em seguida salve o grupo
  
-![IMG6](images/6.png)
+![IMG6](images/6.PNG)
 
 Var em Servidores de recursos (barra lateral esquerda inferior) e Adicione um novo servidor 
 
-![IMG7](images/7.png)
+![IMG7](images/7.PNG)
 
 Preencha como na imagem lembrando que a combinação identificador/scopo sera utilizada na geração do token 
 
-![IMG8](images/8.png)
+![IMG8](images/8.PNG)
 
 Agora vá em Configuração do cliente do aplicativo e habilite o acesso por credenciais e o scopo configurado no servidor de recursos, conforme na imagem
 
-![IMG9](images/9.png)
+![IMG9](images/9.PNG)
 
 Então vá em Integração do aplicativo - Nome do domínio e configure um domínio para gerar uma url para obtenção do token  
 
-![IMG10](images/10.png)
+![IMG10](images/10.PNG)
 
 Agora é só resgatar as configurações, AppClientId e AppClientSecret ficam na tela de Ciente de aplicativo (acessível pela barra lateral esquerda)
 
-![IMG11](images/11.png)
+![IMG11](images/11.PNG)
 
 PoolId é o Id do grupo na tela Configurações gerais
 
-![IMG12](images/12.png)
+![IMG12](images/12.PNG)
 
 ## Criar o código de exemplo 
 
